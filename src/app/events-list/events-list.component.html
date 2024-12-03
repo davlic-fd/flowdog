@@ -1,0 +1,33 @@
+<h1>Events</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>deviceId</th>
+      <th>eventDate</th>
+      <th>type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.deviceId }}</td>
+      <td>{{ event.eventDate }}</td>
+      <td>{{ event.type }}</td>
+      <td>
+        <button class="btn btn-info" (click)="openModal(content, event)">Szczegóły</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-body">
+    <div *ngFor="let item of getObjectProperties(currentEvent)">
+      <p><strong>{{ item.key }}:</strong> {{ item.value }}</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Zamknij</button>
+  </div>
+</ng-template>
